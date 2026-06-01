@@ -31,16 +31,30 @@ This FastAPI application provides:
 ## 📁 Project Structure
 
 Konbini-Fastapi/
+
 ├── app/
+
 │ ├── api/ # Routers (auth, diseases, premium, manager, xray)
+
 │ ├── core/ # Security, config, dependencies, caching
+
 │ ├── middleware/ # Logging middleware
+
 │ ├── services/ # ML model loading & prediction logic
+
 │ ├── training/ # Training scripts (optional)
+
 │ └── main.py # FastAPI entrypoint
+
 ├── models/ # Saved models (.keras, .pkl)
+
 ├── data/ # CSV files (products, disease‑diet mapping)
+
 ├── logs/ # Application logs
+
 ├── .env # Environment variables
+
 ├── requirements.txt
+
 └── README.md
+
