@@ -1,0 +1,23 @@
+import os 
+
+DATA_DIR='data'
+DATA_FILE_NAME='Training.csv'
+DISEASES_DATA_FILE_NAME='df_disease_diet.csv'
+FOOD_NUTRITION_DATA_FILE_NAME='konbiri_products_with_nutrition.csv'
+CV_DATA_FILE_NAME='clean_model.keras'
+
+DATA_FILE_PATH=os.path.join(DATA_DIR,DATA_FILE_NAME)
+DISEASES_DATA_FILE_PATH=os.path.join(DATA_DIR,DISEASES_DATA_FILE_NAME)
+FOOD_NUTRITION_DATA_FILE_PATH=os.path.join(DATA_DIR,FOOD_NUTRITION_DATA_FILE_NAME)
+CV_DATA_FILE_NAME_PATH=os.path.join(DATA_DIR,CV_DATA_FILE_NAME)
+
+APP_DIR='app'
+MODEL_DIR_NAME='models'
+
+MODEL_DIR=os.path.join(APP_DIR,MODEL_DIR_NAME)
+
+MODEL_NAME='model.joblib'
+MODEL_PATH=os.path.join(MODEL_DIR,MODEL_NAME)
+
+LABEL_ENCODER_NAME='label_encoder.joblib'
+LABEL_ENCODER_PATH=os.path.join(MODEL_DIR,LABEL_ENCODER_NAME)

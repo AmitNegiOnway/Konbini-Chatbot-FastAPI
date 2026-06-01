@@ -1,0 +1,2 @@
+instant ramen -> price=200, calories=504
+Mapo tofu bowl -> price=450, calories=137
