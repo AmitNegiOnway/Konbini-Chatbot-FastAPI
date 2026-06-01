@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: fastapi-car-price-api
+    name: konbini-chatbot-api
     env: docker
     plan: free
     branch: main
