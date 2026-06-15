@@ -29,8 +29,8 @@ def premium(user_input: InputSchema,user:dict=Depends(require_customer)):
         vitamin_c_mg=float(row['vitamin_c_mg']),
         calcium_mg=float(row['calcium_mg']),
         iron_mg=float(row['iron_mg']),
-        category=str(row['Category']),
-        meal_type=str(row['Meal_Type'])
+        Category=str(row['Category']),
+        Meal_Type=str(row['Meal_Type'])
     )
     
     os.makedirs("audits", exist_ok=True)
