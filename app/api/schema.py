@@ -19,6 +19,9 @@ class OutputSchema(BaseModel):
     vitamin_c_mg: float
     calcium_mg: float
     iron_mg: float
+    Category:str
+    Meal_Type:str
+    
 
 class DiseasesInput(BaseModel):
     symptoms: List[str] = Field(..., description="List of symptoms")
