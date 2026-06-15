@@ -3,7 +3,7 @@ import os
 DATA_DIR='data'
 DATA_FILE_NAME='Training.csv'
 DISEASES_DATA_FILE_NAME='df_disease_diet.csv'
-FOOD_NUTRITION_DATA_FILE_NAME='konbiri_products_with_nutrition1.xls'
+FOOD_NUTRITION_DATA_FILE_NAME='konbiri_products_with_nutrition1.csv'
 CV_DATA_FILE_NAME='clean_model.keras'
 
 DATA_FILE_PATH=os.path.join(DATA_DIR,DATA_FILE_NAME)
