@@ -157,8 +157,9 @@ def house_price_prediction(user_input: HouseInputSchema):
         predicted_price = float(prediction[0])
 
         return {
-            "predicted_price": predicted_price
+            "Price": f"{int(predicted_price)} Yen"
         }
+        
 
     except Exception as e:
 
