@@ -1,10 +1,12 @@
+# =========================
 # Builder Stage
+# =========================
 
 FROM python:3.10-slim AS builder
 
 WORKDIR /build
 
-# Install system dependencies only in builder
+# Build-time system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     gcc \
@@ -13,10 +15,10 @@ RUN apt-get update && apt-get install -y \
 # Upgrade pip
 RUN pip install --upgrade pip
 
-# Copy only requirements first (better caching)
+# Copy requirements first for better Docker caching
 COPY requirements.txt .
 
-# Install dependencies into custom folder
+# Install Python dependencies
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install \
     --prefix=/install \
@@ -24,11 +26,19 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     -r requirements.txt
 
 
+# =========================
 # Final Stage
+# =========================
 
 FROM python:3.10-slim
 
 WORKDIR /konbini
+
+# Runtime dependency required by LightGBM
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    libgomp1 && \
+    rm -rf /var/lib/apt/lists/*
 
 # Prevent Python cache files
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -36,20 +46,15 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Faster Python logs
 ENV PYTHONUNBUFFERED=1
 
-# Copy installed packages from builder
+# Copy Python packages from builder
 COPY --from=builder /install /usr/local
 
-# Copy stable folders first
+# Copy application files
 COPY data ./data
 COPY training ./training
-
-# Copy frequently changing app last
 COPY app ./app
 
-# App port
-ENV PORT=5000
-
+# Render provides PORT
 EXPOSE 5000
 
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]
-
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-5000}"]
